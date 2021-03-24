@@ -17,7 +17,7 @@ public class User {
 	@NotNull private Integer id;
 	@NotNull private String name;
 	@NotNull private String email;
-	@NotNull private String password;
+	@NotNull private String password; //TODO: Add roles to help define task management? Admin and User? Admin can set info for a user?
 	
 	public User() {
 		super();
@@ -43,7 +43,7 @@ public class User {
 		return password;
 	}
 	
-	public void setPassword(String password) {
+	public void setPassword(String password) { //TODO: should users be allowed to set their password? perhaps if they are admin they can?
 		this.password = password;
 	}
 	

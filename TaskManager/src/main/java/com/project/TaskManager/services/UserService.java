@@ -27,7 +27,7 @@ public class UserService {
 	}
 	
 	/**
-	 * checks the equivalence of a user inputted password and the password for
+	 * checks the equivalence of a user inputed password and the password for
 	 * the user in the DB.
 	 * @param jspPass - String: form input
 	 * @param dbPass - String: DB 

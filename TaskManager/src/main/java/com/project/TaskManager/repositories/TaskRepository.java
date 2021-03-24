@@ -15,4 +15,5 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
 	public List<Task> findAllTasksForUser(User user);
 	public List<Task> findAllTasksByStart(Date date);
 	public List<Task> findAllTasksBySeverity(String sever);
+	//TODO: should there be ways to search tasks by all types of a task?
 }
