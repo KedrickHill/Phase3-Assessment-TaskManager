@@ -46,6 +46,11 @@ public class User {
 	public void setPassword(String password) { //TODO: should users be allowed to set their password? perhaps if they are admin they can?
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", password=" + password + "]";
+	}
 	
 	
 }
