@@ -12,8 +12,9 @@ create table task(
     severity enum('low','medium','high') default 'low',
     description varchar(255) default null,
     start_date datetime(6) default null,
-    end_date datetime(6) default null)
-    user_id foriegn key default null;
+    end_date datetime(6) default null,
+    user_id default null,
+    foreign key (user_id) references user(id));
 ```
 
 #### Creating User table
