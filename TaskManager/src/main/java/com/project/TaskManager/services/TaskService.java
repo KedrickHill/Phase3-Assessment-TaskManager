@@ -27,28 +27,28 @@ public class TaskService {
 	/**
 	 * Collects all tasks under a specified user
 	 * @param user - User
-	 * @return - List of task connected to param user
+	 * @return - Iterable of task connected to param user
 	 * @exception - RuntimeException
 	 */
-	public List<Task> GetAllTasksByUser(User user) throws RuntimeException{ //TODO: eventually change to UNF
-		return taskRepo.findAllTasksForUser(user);
+	public Iterable<Task> GetAllTasksForUser(User user) throws RuntimeException{ //TODO: eventually change to UNF
+		return taskRepo.findAllByUser(user);
 	}
 	
 	/**
 	 * Collects all tasks that start by the given time
 	 * @param start - Date
-	 * @return - List of all tasks connected to param start
+	 * @return - Iterable of all tasks connected to param start
 	 */
-	public List<Task> GetAllTasksByStart(Date start) {
-		return taskRepo.findAllTasksByStart(start);
+	public Iterable<Task> GetAllTasksByStart(Date start) {
+		return taskRepo.findAllByStart(start);
 	}
 	
 	/**
 	 * Collects all tasks that based on serverity
 	 * @param sever - String
-	 * @return - List of all task connected to param sever
+	 * @return - Iterable of all task connected to param sever
 	 */
-	public List<Task> GetAllTasksBySeverity(String sever) {
-		return taskRepo.findAllTasksBySeverity(sever);
+	public Iterable<Task> GetAllTasksBySeverity(String sever) {
+		return taskRepo.findAllBySeverity(sever);
 	}
 }

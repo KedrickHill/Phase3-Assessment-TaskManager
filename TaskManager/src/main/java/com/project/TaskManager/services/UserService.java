@@ -1,17 +1,30 @@
 package com.project.TaskManager.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.project.TaskManager.entities.User;
+import com.project.TaskManager.exceptions.UserNotFoundException;
+import com.project.TaskManager.repositories.TaskRepository;
 import com.project.TaskManager.repositories.UserRepository;
 
-@Service
 public class UserService {
 
-	@Autowired
-	UserRepository userRepo;
 	
+	private UserRepository userRepo;
+	private TaskRepository taskRepo;
+	private BCryptPasswordEncoder bCrypt;
+	
+	
+	@Autowired
+	public UserService(UserRepository userRepo, TaskRepository taskRepo, BCryptPasswordEncoder bCrypt) {
+		this.userRepo = userRepo;
+		this.taskRepo = taskRepo;
+		this.bCrypt = bCrypt;
+	}
+
 	/**
 	 * Collects a user using a name which is checked if the user is empty;
 	 * if so, throws Exception
@@ -19,11 +32,10 @@ public class UserService {
 	 * @return - User
 	 * @exception - RuntimeException
 	 */
-	public User GetUserByName(String name) throws RuntimeException{ //TODO: eventually change to UNF
-		User temp = (userRepo.findUserByName(name).isPresent()) 
-				? userRepo.findUserByName(name).get() : new User();
-		if(temp.getName().isEmpty() || temp.getPassword().isEmpty()) throw new RuntimeException();
-		return temp;
+	public User GetUserByName(String name) throws UserNotFoundException{ //TODO: eventually change to UNF
+		Optional<User> temp = userRepo.findUserByName(name);
+		if(!temp.isPresent()) throw new UserNotFoundException();
+		return temp.get();
 	}
 	
 	/**
@@ -36,5 +48,4 @@ public class UserService {
 	public Boolean isValidPassword(String jspPass, String dbPass) {
 		return jspPass.equals(dbPass);
 	}
-	
 }
