@@ -50,4 +50,8 @@ public class TaskService {
 	public Iterable<Task> GetAllTasksBySeverity(String sever) {
 		return taskRepo.findAllBySeverity(sever);
 	}
+	
+	public void addNewTask(Task task) {
+		taskRepo.save(task);
+	}
 }

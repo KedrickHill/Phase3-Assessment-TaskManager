@@ -21,13 +21,14 @@ public class Task {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	@NotNull private Integer id;
-	private String name;
-	private String email;
-	private String severity;
-	
-	private String description;
-	private Date start;
-	private Date end;
+	@Column(name="severity")
+	@NotNull private String severity;
+	@Column(name="description")
+	@NotNull private String description;
+	@Column(name="start_date")
+	@NotNull private Date start;
+	@Column(name="end_date")
+	@NotNull private Date end;
 	
 	@ManyToOne
 	private User user;
@@ -36,29 +37,13 @@ public class Task {
 		super();
 	}
 	
-	public Task(String name, String email, String severity, String description, Date start) {
+	public Task(User user, String severity, String description, Date start, Date end) {
 		super();
-		this.name = name;
-		this.email = email;
+		this.user = user;
 		this.severity = severity;
 		this.description = description;
-		this.start = new Date(System.currentTimeMillis());
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+		this.start = start;
+		this.end = end;
 	}
 
 	public String getSeverity() {

@@ -53,11 +53,20 @@ public class User {
 	public void setPassword(String password) { //TODO: should users be allowed to set their password? perhaps if they are admin they can?
 		this.password = password;
 	}
+	
+	public String getRole() {
+		return role;
+	}
 
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", password=" + password + "]";
 	}
+
 	
 	
 }
