@@ -1,12 +1,12 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-    <head>
+ <head>
         <title>Task Manager</title>
     </head>
     <body>
-        <h1>Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <h1>Hello ${authUser.getName()}!</h1>
         <form action="/logout" method="post">
             <input type="submit" value="Sign Out"/>
         </form>
     </body>
-</html> -->
+</html>

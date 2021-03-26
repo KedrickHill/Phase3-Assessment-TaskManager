@@ -1,5 +1,6 @@
 package com.project.TaskManager.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,11 +14,16 @@ import com.sun.istack.NotNull;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	@NotNull private Integer id;
+	@Column(name="name")
 	@NotNull private String name;
+	@Column(name="email")
 	@NotNull private String email;
-	@NotNull private String password; //TODO: Add roles to help define task management? Admin and User? Admin can set info for a user?
+	@Column(name="password")
+	@NotNull private String password;
+	@Column(name="role")//TODO: Add roles to help define task management? Admin and User? Admin can set info for a user?
 	@NotNull private String role;
 	
 	public User() {

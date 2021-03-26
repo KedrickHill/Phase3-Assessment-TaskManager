@@ -2,27 +2,30 @@ package com.project.TaskManager.services;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
+import com.project.TaskManager.controllers.TaskController;
 import com.project.TaskManager.entities.User;
 import com.project.TaskManager.exceptions.UserNotFoundException;
 import com.project.TaskManager.repositories.TaskRepository;
 import com.project.TaskManager.repositories.UserRepository;
 
+@Service
 public class UserService {
 
-	
+	Logger logger = LoggerFactory.getLogger(TaskController.class);
+
 	private UserRepository userRepo;
-	private TaskRepository taskRepo;
-	private BCryptPasswordEncoder bCrypt;
+//	private TaskRepository taskRepo;
 	
 	
 	@Autowired
-	public UserService(UserRepository userRepo, TaskRepository taskRepo, BCryptPasswordEncoder bCrypt) {
+	public UserService(UserRepository userRepo, TaskRepository taskRepo) {
 		this.userRepo = userRepo;
-		this.taskRepo = taskRepo;
-		this.bCrypt = bCrypt;
+//		this.taskRepo = taskRepo;
 	}
 
 	/**
@@ -32,9 +35,12 @@ public class UserService {
 	 * @return - User
 	 * @exception - RuntimeException
 	 */
-	public User GetUserByName(String name) throws UserNotFoundException{ //TODO: eventually change to UNF
+	public User GetUserByName(String name) throws UserNotFoundException{ 
+		logger.info("Name passed to GetUser: " + name);
 		Optional<User> temp = userRepo.findUserByName(name);
+//		logger.info("found this user: " + temp.get().getName());
 		if(!temp.isPresent()) throw new UserNotFoundException();
+		logger.info("Returning found user from sql: " + temp.get().getName());
 		return temp.get();
 	}
 	
