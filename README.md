@@ -7,14 +7,13 @@ Create a task manager application with spring boot and spring Data JPA.
 ```
 create table task(
     id int not null auto_increment primary key,
-    name varchar(255) default null,
-    email varchar(255) default null,
     severity enum('low','medium','high') default 'low',
     description varchar(255) default null,
     start_date datetime(6) default null,
     end_date datetime(6) default null,
-    user_id default null,
-    foreign key (user_id) references user(id));
+    user_id default null);
+    
+    alter table task add foreign key (user_id) references user(id);
 ```
 
 #### Creating User table
