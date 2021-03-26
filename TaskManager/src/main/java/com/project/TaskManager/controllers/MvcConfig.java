@@ -1,4 +1,4 @@
-package com.project.TaskManager.controller;
+package com.project.TaskManager.controllers;
 
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 

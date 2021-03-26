@@ -18,6 +18,7 @@ public class User {
 	@NotNull private String name;
 	@NotNull private String email;
 	@NotNull private String password; //TODO: Add roles to help define task management? Admin and User? Admin can set info for a user?
+	@NotNull private String role;
 	
 	public User() {
 		super();
