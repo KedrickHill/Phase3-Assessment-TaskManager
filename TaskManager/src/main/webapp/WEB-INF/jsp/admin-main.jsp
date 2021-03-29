@@ -13,6 +13,7 @@
 	<div class="NewTask">
 		<form action="admin-main" method="post">
 			<label>Name:<input type="text" id="name" name="name" placeholder="Enter Name" required/></label><br/>
+			<label>Task Name:<input type="text" id="taskName" name="taskName" placeholder="Enter Task Name" required/></label><br/>
 			<label>Description:<input type="text" id="desc" name="desc" placeholder="Enter Task Description" required/></label><br/>
 			Severity: <select id="sever" name="sever">
 				<option value="low">Low</option>

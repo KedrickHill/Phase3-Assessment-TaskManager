@@ -10,4 +10,6 @@
             <div><input type="submit" value="Sign In"/></div>
         </form><br/>
      </body>
+     <br/>
+     <a href="/register">Register</a>
 </html>
