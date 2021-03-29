@@ -54,4 +54,12 @@ public class UserService {
 	public Boolean isValidPassword(String jspPass, String dbPass) {
 		return jspPass.equals(dbPass);
 	}
+	
+	/**
+	 * Adds or updates a user to the current repo/DB
+	 * @param user - User
+	 */
+	public void addNewUser(User user) {
+		userRepo.save(user);
+	}
 }

@@ -30,6 +30,14 @@ public class User {
 		super();
 	}
 	
+	public User(String name, String email, String password, String role) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+	}
+
 	public String getName() {
 		return name;
 	}

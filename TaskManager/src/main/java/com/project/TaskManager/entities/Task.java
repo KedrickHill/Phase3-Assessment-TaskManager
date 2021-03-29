@@ -75,7 +75,7 @@ public class Task {
 	}
 
 	public void setEnd(Date end) {
-		this.end = new Date(System.currentTimeMillis());
+		this.end = end;
 	}
 
 	public User getUser() {
