@@ -9,6 +9,13 @@ import com.project.TaskManager.entities.Task;
 import com.project.TaskManager.entities.User;
 import com.project.TaskManager.repositories.TaskRepository;
 
+/**
+ * TaskService is central hub for all methods that aide in adding,
+ * collecting, updating, and removing tasks from the task table in
+ * the database.
+ * @author Kedrick
+ *
+ */
 @Service
 public class TaskService {
 
@@ -51,6 +58,10 @@ public class TaskService {
 		return taskRepo.findAllBySeverity(sever);
 	}
 	
+	/**
+	 * Adds and updates a task to the list of tasks
+	 * @param task - Task
+	 */
 	public void addNewTask(Task task) {
 		taskRepo.save(task);
 	}
