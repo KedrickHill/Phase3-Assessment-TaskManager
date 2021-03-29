@@ -13,6 +13,12 @@ import com.project.TaskManager.exceptions.UserNotFoundException;
 import com.project.TaskManager.repositories.TaskRepository;
 import com.project.TaskManager.repositories.UserRepository;
 
+/**
+ * Central hub for all methods that help when working with user information.
+ * Adding, removing, and modifying users from the user table in the database
+ * @author Kedrick
+ *
+ */
 @Service
 public class UserService {
 

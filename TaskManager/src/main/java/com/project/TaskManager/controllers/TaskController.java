@@ -26,7 +26,6 @@ public class TaskController {
 
 	// Global Variables
 	Logger logger = LoggerFactory.getLogger(TaskController.class);
-
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -60,6 +59,7 @@ public class TaskController {
 			return "error";
 		String path = (authUser.getRole().equals("USER")) ? "user-main" : "admin-main";
 		model.addAttribute("authUser", authUser);
+		model.addAttribute("ListOfTasks", taskService.GetAllTasksForUser(authUser));
 		return path;
 	}
 
@@ -85,7 +85,7 @@ public class TaskController {
 	@PostMapping("/admin-main")
 	public String addTask(ModelMap model, @RequestParam String name, @RequestParam String desc, @RequestParam String sever, @RequestParam Date start, @RequestParam Date end) {
 		User user = userService.GetUserByName(name);
-		Task task = new Task(user, sever, desc, start, end);
+		Task task = new Task(user, name, sever, desc, start, end);
 		taskService.addNewTask(task);
 		model.addAttribute("authUser", authUser);
 		return "admin-main";

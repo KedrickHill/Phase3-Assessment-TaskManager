@@ -21,6 +21,8 @@ public class Task {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	@NotNull private Integer id;
+	@Column(name="task_name")
+	@NotNull private String name;
 	@Column(name="severity")
 	@NotNull private String severity;
 	@Column(name="description")
@@ -37,9 +39,10 @@ public class Task {
 		super();
 	}
 	
-	public Task(User user, String severity, String description, Date start, Date end) {
+	public Task(User user, String name, String severity, String description, Date start, Date end) {
 		super();
 		this.user = user;
+		this.name = name;
 		this.severity = severity;
 		this.description = description;
 		this.start = start;
@@ -84,6 +87,14 @@ public class Task {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

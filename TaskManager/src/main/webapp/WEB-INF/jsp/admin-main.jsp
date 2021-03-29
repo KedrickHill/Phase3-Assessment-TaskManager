@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +5,7 @@
 <title>Admin TaskManager</title>
 </head>
 <body>
-	<h2>Welcome to Admin Privileges ${authUser.getName()}!</h2>
+	<h2>Welcome to Admin Privileges name!</h2>
 	<hr/>
 	<h3>Create a New Task</h3>
 	<div class="NewTask">
