@@ -1,5 +1,6 @@
 package com.project.TaskManager.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -32,6 +33,14 @@ public class UserService {
 	public UserService(UserRepository userRepo, TaskRepository taskRepo) {
 		this.userRepo = userRepo;
 //		this.taskRepo = taskRepo;
+	}
+	
+	/**
+	 * Collects all of the users from the database
+ 	 * @return - List<User>
+	 */
+	public List<User> GetAllUsers() {
+		return userRepo.findAll();
 	}
 
 	/**

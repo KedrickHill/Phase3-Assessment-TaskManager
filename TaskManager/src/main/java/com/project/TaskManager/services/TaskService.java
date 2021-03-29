@@ -61,10 +61,19 @@ public class TaskService {
 	}
 	
 	/**
+	 * Collects all tasks that are labeled by the same task name keyword(s)
+	 * @param name - String 
+	 * @return - List<Task>
+	 */
+	public List<Task> GetAllByTaskName(String name) {
+		return taskRepo.findAllByTaskName(name);
+	}
+	
+	/**
 	 * Adds and updates a task to the list of tasks
 	 * @param task - Task
 	 */
-	public void addNewTask(Task task) {
+	public void addUpdateNewTask(Task task) {
 		taskRepo.save(task);
 	}
 }

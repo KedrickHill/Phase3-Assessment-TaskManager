@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin TaskManager</title>
@@ -24,22 +26,76 @@
 		</form>
 	</div>
 	
+	
 	<div class="manageUsers">
 	<hr/>
 	<h3>Manage Users</h3>
-	Not integrated yet
+	<form action="admin-main" method="post">
+		<table>
+			<thead>
+				<tr>
+					<th>Name of User</th>
+					<th>Email</th>
+					<th>Role</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${allUsers.empty}">
+					<td>No Tasks are Set</td>
+				</tr>
+				<tr th:each="user : ${allUsers}">
+					<td><span th:text="${user.name}"> Name </span></td>
+					<td><span th:text="${user.email}"> Email </span></td>
+					<td><span th:text="${user.role}"> Role </span></td>
+				</tr>
+			</tbody>
+		</table>
+<!-- 		<input type="submit" value="Save"/>
+ -->	</form>
 	</div>
+	
+	
 	<div class="ManageTasks">
 	<hr/>
 	<h3>Manage Tasks</h3>
-	Not integrated yet
+	<form action="admin-main" method="post">
+		<table>
+			<thead>
+				<tr>
+					<th>Task Name</th>
+					<th>Description</th>
+					<th>Severity</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Completed</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${allTasks.empty}">
+					<td>No Tasks are Set</td>
+				</tr>
+				<tr th:each="task : ${allTasks}">
+					<td><span th:text="${task.name}"> Name </span></td>
+					<td><span th:text="${task.description}"> Description </span></td>
+					<td><span th:text="${task.severity}"> Severity </span></td>
+					<td><span th:text="${task.start}"> Start Date </span></td>
+					<td><span th:text="${task.end}"> End Date </span></td>
+					<td><span th:text="${task.isComplete}"> Completed</span></td>
+				</tr>
+			</tbody>
+		</table>
+<!-- 		<input type="submit" value="Save"/>
+ -->	</form>
 	</div>
 	<hr/>
+	
 	<div class="logout">
 		<form action="/logout" method="post">
 			<input type="submit" value="Sign Out" />
 		</form>
 	</div>
 	<br/>
+	<br/>
+	
 </body>
 </html>

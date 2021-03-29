@@ -31,6 +31,8 @@ public class Task {
 	@NotNull private Date start;
 	@Column(name="end_date")
 	@NotNull private Date end;
+	@Column(name="is_complete")
+	private boolean isComplete;
 	
 	@ManyToOne
 	private User user;
@@ -95,6 +97,14 @@ public class Task {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean isComplete() {
+		return isComplete;
+	}
+
+	public void setComplete(boolean isComplete) {
+		this.isComplete = isComplete;
 	}
 	
 	

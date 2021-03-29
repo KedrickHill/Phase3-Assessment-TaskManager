@@ -1,6 +1,7 @@
 package com.project.TaskManager.controllers;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,8 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 	private User authUser;
+	private List<Task> allTasks; 
+	private List<User> allUsers;
 
 	/**
 	 * Initial landing page
@@ -60,6 +63,8 @@ public class TaskController {
 		String path = (authUser.getRole().equals("USER")) ? "user-main" : "admin-main";
 		model.addAttribute("authUser", authUser);
 		model.addAttribute("ListOfTasks", taskService.GetAllTasksForUser(authUser));
+		model.addAttribute("allTasks", allTasks = taskService.GetAllTasks());
+		model.addAttribute("allUsers", allUsers = userService.GetAllUsers());
 		return path;
 	}
 
@@ -70,6 +75,12 @@ public class TaskController {
 	@PostMapping("/logout")
 	public String logout() {
 		return "logout";
+	}
+	
+	@PostMapping("/user-main") 
+	public String saveTask(@RequestParam List<Task> ListOfTasks) {
+		logger.info(ListOfTasks.get(0).toString());
+		return "user-main";
 	}
  
 	/**
@@ -86,8 +97,10 @@ public class TaskController {
 	public String addTask(ModelMap model, @RequestParam String name, @RequestParam String desc, @RequestParam String sever, @RequestParam Date start, @RequestParam Date end) {
 		User user = userService.GetUserByName(name);
 		Task task = new Task(user, name, sever, desc, start, end);
-		taskService.addNewTask(task);
+		taskService.addUpdateNewTask(task);
 		model.addAttribute("authUser", authUser);
+		model.addAttribute("allTasks", allTasks = taskService.GetAllTasks());
+		model.addAttribute("allUsers", allUsers = userService.GetAllUsers());
 		return "admin-main";
 	}
 	

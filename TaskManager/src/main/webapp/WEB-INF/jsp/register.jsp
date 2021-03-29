@@ -19,5 +19,7 @@
 	<input type="password" id="pswd" name="pswd" placeholder="Retype Password" required/>	<br/><br/>
 	<input type="submit" value="Register"/>
 </form>
+<br/>
+Return to <a href="/">Login</a>
 </body>
 </html>
