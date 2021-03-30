@@ -20,6 +20,6 @@
 	<input type="submit" value="Register"/>
 </form>
 <br/>
-Return to <a href="/">Login</a>
+Return to <a href="/login">Login</a>
 </body>
 </html>

@@ -11,7 +11,7 @@
 	<hr/>
 	<h3>Create a New Task</h3>
 	<div class="NewTask">
-		<form action="admin-main" method="post">
+		<form action="/admin-main" method="post">
 			<label>Name:<input type="text" id="name" name="name" placeholder="Enter Name" required/></label><br/>
 			<label>Task Name:<input type="text" id="taskName" name="taskName" placeholder="Enter Task Name" required/></label><br/>
 			<label>Description:<input type="text" id="desc" name="desc" placeholder="Enter Task Description" required/></label><br/>
@@ -30,7 +30,7 @@
 	<div class="manageUsers">
 	<hr/>
 	<h3>Manage Users</h3>
-	<form action="admin-main" method="post">
+	<form action="/admin-main" method="post">
 		<table>
 			<thead>
 				<tr>
@@ -58,7 +58,7 @@
 	<div class="ManageTasks">
 	<hr/>
 	<h3>Manage Tasks</h3>
-	<form action="admin-main" method="post">
+	<form action="/admin-main" method="post">
 		<table>
 			<thead>
 				<tr>

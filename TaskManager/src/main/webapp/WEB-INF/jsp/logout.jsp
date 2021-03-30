@@ -7,6 +7,6 @@
 <body>
 <h2>You have been successfully logged out.</h2>
 <br/>
-<a href="/">Login</a>
+<a href="/login">Login</a>
 </body>
 </html>

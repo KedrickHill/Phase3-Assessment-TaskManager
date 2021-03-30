@@ -6,6 +6,6 @@
 </head>
 <body>
 <h2>Congratulations ${newUser.getName()}, You Have Been Registered!</h2>
-Can sign in <a href="/">here</a>.
+Can sign in <a href="/login">here</a>.
 </body>
 </html>
