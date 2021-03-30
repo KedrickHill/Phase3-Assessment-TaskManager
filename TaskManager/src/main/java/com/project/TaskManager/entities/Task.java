@@ -106,6 +106,12 @@ public class Task {
 	public void setComplete(boolean isComplete) {
 		this.isComplete = isComplete;
 	}
+
+	@Override
+	public String toString() {
+		return "Task [name=" + name + ", severity=" + severity + ", description=" + description + ", start=" + start
+				+ ", end=" + end + ", isComplete=" + isComplete + "]";
+	}
 	
 	
 }

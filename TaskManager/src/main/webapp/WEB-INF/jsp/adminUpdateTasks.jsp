@@ -6,6 +6,7 @@
 <title>Admin TaskManager</title>
 </head>
 <body>
+<section>
 	<h2>Welcome to Admin Privileges <span th:text="${authUser.name}"></span>!</h2>
 	<hr/>
 	<h3>Create a New Task</h3>
@@ -24,11 +25,13 @@
 			<input type="submit" value="Add Task"/> 
 		</form>
 	</div>
+	</section>
 	
 	
 	<div class="manageUsers">
+	<section>
 	<hr/>
-	<h3>Manage Users <a href="/admin/manageUsers">Update/Delete</a></h3>
+	<h3>Manage Users</h3>
 		<table id="UsersTable">
 			<thead>
 				<tr>
@@ -49,11 +52,13 @@
 			</tbody>
 		</table>
 <!-- 		<input type="submit" value="Save"/> -->
+	</section>
 	</div>
 	
 	<div class="ManageTasks">
 	<hr/>
-	<h3>Manage Tasks <a href="/admin/manageTasks">Update/Delete</a></h3>
+	<section>
+	<h3>Manage Tasks <a href="/admin-main">Done</a></h3>
 		<table id="TasksTable">
 			<thead>
 				<tr>
@@ -84,7 +89,20 @@
 			</tbody>
 		</table>
 <!-- 		<input type="submit" value="Save"/> -->
+	</section>
 	</div>
+	
+	<div class="manageTasks-update-and-delete">
+		<aside>
+			<form action="/admin/manageTasks" method="post">
+				<select name="desc" id="desc">
+					<option th:each="task : ${allTasks}" th:value="${task.description}" th:text="${task.description}"></option>
+				</select>
+				<input type="submit" value="Delete"/>
+			</form>
+		</aside>
+	</div>
+	
 	<hr/>
 	
 	<div class="logout">

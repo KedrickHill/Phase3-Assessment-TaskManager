@@ -16,4 +16,5 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 	public List<Task> findAllByStart(Date date);
 	public List<Task> findAllBySeverity(String sever);
 	public List<Task> findAllByName(String taskName);
+	public Task findTaskByDescription(String description);
 }

@@ -77,4 +77,12 @@ public class UserService {
 	public void addNewUser(User user) {
 		userRepo.save(user);
 	}
+	
+	/**
+	 * deletes a given user from the database
+	 * @param user - User
+	 */
+	public void deleteUser(User user) {
+		userRepo.delete(user);
+	}
 }

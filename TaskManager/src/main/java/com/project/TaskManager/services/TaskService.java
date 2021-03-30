@@ -33,6 +33,15 @@ public class TaskService {
 	}
 	
 	/**
+	 * Collects the task that matches its description from the database
+	 * @param description - String
+	 * @return Task
+	 */
+	public Task GetTaskByDescription(String description) {
+		return taskRepo.findTaskByDescription(description);
+	}
+	
+	/**
 	 * Collects all tasks under a specified user
 	 * @param user - User
 	 * @return - List of task connected to param user
@@ -75,5 +84,13 @@ public class TaskService {
 	 */
 	public void addUpdateNewTask(Task task) {
 		taskRepo.save(task);
+	}
+	
+	/**
+	 * Deletes a task from the database
+	 * @param task - Task
+	 */
+	public void deleteTask(Task task) {
+		taskRepo.delete(task);
 	}
 }

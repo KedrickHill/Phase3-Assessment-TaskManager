@@ -4,6 +4,14 @@
 	xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
 <title>Task Manager</title>
+<script>
+function collectTasks(form) {
+	var listOfTasks = new List<Tasks>;
+	listOfTasks = ${ListOfTasks};
+	alert("Collected all tasks")
+	
+}
+</script>
 </head>
 <body>
 	<h1>
@@ -33,11 +41,11 @@
 					<td><span th:text="${task.severity}"> Severity </span></td>
 					<td><span th:text="${task.start}"> Start Date </span></td>
 					<td><span th:text="${task.end}"> End Date </span></td>
-					<td><input type="checkbox" id="status" name="status[]" /></td>
+					<td><input type="checkbox" id="status" name="status" /></td>
 				</tr>
 			</tbody>
 		</table>
-		<input type="submit" value="Save"/>
+		<input type="submit" value="Save" onclick="collectTasks(this)"/>
 	</form>
 	<br/>
 	<form action="/logout" method="post">

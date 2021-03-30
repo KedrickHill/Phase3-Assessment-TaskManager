@@ -36,7 +36,14 @@ public class TaskController {
 	private User authUser;
 	private List<Task> allTasks;
 	private List<User> allUsers;
+	private ModelAndView mv;
 
+	private void setup() {
+		mv = new ModelAndView();
+		mv.addObject("authUser", authUser);
+		mv.addObject("allTasks", allTasks = taskService.GetAllTasks());
+		mv.addObject("allUsers", allUsers = userService.GetAllUsers());	
+	}
 	
 	/**
 	 * ========================================================
@@ -104,24 +111,18 @@ public class TaskController {
 		logger.info("Login Successful");
 		mv.addObject("authUser", authUser);
 		mv.addObject("ListOfTasks", taskService.GetAllTasksForUser(authUser));
-//		model.addAttribute("authUser", authUser);
-//		model.addAttribute("ListOfTasks", taskService.GetAllTasksForUser(authUser));
 		logger.info("Redirecting to user-main...");
 		mv.setViewName("user-main");
 		return mv;
 	}
 	
-	/*
-	 *  
-	 */
-	//TODO: This is optional to complete
-	@PostMapping("user-main/update")
-	public ModelAndView saveTask(@RequestParam List<Task> ListOfTasks) {
+	
+	@PostMapping("/user-main/update")
+	public ModelAndView saveTasks(@RequestParam List<Task> listOfTasks) {
 		ModelAndView mv = new ModelAndView();
-		logger.info(ListOfTasks.get(0).toString());
 		mv.addObject("authUser", authUser);
-		mv.addObject("ListOfTasks", taskService.GetAllTasksForUser(authUser));
-		mv.setViewName("redirect:user-main");
+		mv.addObject("ListOfTasks", listOfTasks);
+		mv.setViewName("user-main");
 		return mv;
 	} 
 
@@ -144,7 +145,7 @@ public class TaskController {
 
 	/**
 	 * ========================================================
-	 * = ADMIN MAIN SERVLET CONTROLLER
+	 * = ADMIN MAIN SERVLET CONTROLLERS
 	 * ========================================================
 	 */
 	
@@ -160,28 +161,20 @@ public class TaskController {
 	 * @param password
 	 * @return
 	 */
-	//TODO: Get this working so admins can sign into the admin page
 	@PostMapping("/admin-main")
 	public ModelAndView adminMain(@RequestParam String username, @RequestParam String password) {
 		logger.info("Recieved Username and password: " + username + " : " + password);
-		ModelAndView mv = new ModelAndView();
 		authUser = userService.GetUserByName(username);
 		logger.info(authUser.toString());
 		if (!userService.isValidPassword(password, authUser.getPassword()) || !authUser.getRole().equals("ADMIN"))
 			return new ModelAndView("error");
 		logger.info("Login Successful");
-		mv.addObject("authUser", authUser);
-		mv.addObject("allTasks", allTasks = taskService.GetAllTasks());
-		mv.addObject("allUsers", allUsers = userService.GetAllUsers());
-//		model.addAttribute("authUser", authUser);
-//		model.addAttribute("ListOfTasks", taskService.GetAllTasksForUser(authUser));
-//		model.addAttribute("allTasks", allTasks);
-//		model.addAttribute("allUsers", allUsers);
+		setup();
 		logger.info("Redirecting to /admin-main...");
 		mv.setViewName("admin-main");
 		return mv;
-
 	}
+	
 	
 	/**
 	 * Admin page for adding a task to any user that is in the db
@@ -194,24 +187,56 @@ public class TaskController {
 	 * @param end   - Date
 	 * @return - String
 	 */
-	//TODO: ensure that an admin can still add a task to a user
 	@PostMapping("/admin-main/addTask")
 	public ModelAndView addTask(@RequestParam String name, @RequestParam String taskName,
 			@RequestParam String desc, @RequestParam String sever, @RequestParam Date start, @RequestParam Date end) {
-		ModelAndView mv = new ModelAndView();
 		User user = userService.GetUserByName(name);
 		Task task = new Task(user, taskName, sever, desc, start, end);
 		taskService.addUpdateNewTask(task);
-//		model.addAttribute("authUser", authUser);
-//		model.addAttribute("allTasks", allTasks = taskService.GetAllTasks());
-//		model.addAttribute("allUsers", allUsers = userService.GetAllUsers());
-		mv.addObject("authUser", authUser);
-		mv.addObject("allTasks", allTasks = taskService.GetAllTasks());
-		mv.addObject("allUsers", allUsers = userService.GetAllUsers());
-		mv.setViewName("admin-main");
+		setup();
+		mv.setViewName("/admin-main");
 		return mv;
 	}
 	
+	/**
+	 * ========================================================
+	 * = ADMIN MANAGEMENT OF TASKS AND USERS SERVLET CONTROLLERS
+	 * ========================================================
+	 */
+	
+	@GetMapping("/admin/manageUsers")
+	public ModelAndView showMangageUsers() { 
+		setup();	
+		mv.setViewName("adminUpdateUsers");
+		return mv;
+	}
+	
+	@PostMapping("/admin/manageUsers")
+	public ModelAndView deleteModifyUser(@RequestParam String userName) {
+		logger.info("Collected " + userName + " from select form");
+		userService.deleteUser(userService.GetUserByName(userName));
+		setup();
+		mv.setViewName("/admin-main");
+		return mv;
+		
+	}
+	
+	@GetMapping("/admin/manageTasks")
+	public ModelAndView showManageTasks() {
+		setup();
+		mv.setViewName("adminUpdateTasks");
+		return mv;
+	}
+	
+	@PostMapping("/admin/manageTasks")
+	public ModelAndView deleteModifyTask(@RequestParam String desc) {
+		logger.info("Collected " + desc + " from select form");
+		taskService.deleteTask(taskService.GetTaskByDescription(desc));
+		setup();
+		mv.setViewName("/admin-main");
+		return mv;
+		
+	}
 	/**
 	 * ========================================================
 	 * = USER REGISTRATION SERVLET CONTROLLERS
