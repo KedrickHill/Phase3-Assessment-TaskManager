@@ -3,7 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
-<meta charset="ISO-8859-1">
 <title>Admin TaskManager</title>
 </head>
 <body>
@@ -11,7 +10,7 @@
 	<hr/>
 	<h3>Create a New Task</h3>
 	<div class="NewTask">
-		<form action="admin-main" method="post">
+		<form action="admin-main/addTask" method="post">
 			<label>Name:<input type="text" id="name" name="name" placeholder="Enter Name" required/></label><br/>
 			<label>Task Name:<input type="text" id="taskName" name="taskName" placeholder="Enter Task Name" required/></label><br/>
 			<label>Description:<input type="text" id="desc" name="desc" placeholder="Enter Task Description" required/></label><br/>
@@ -62,6 +61,7 @@
 		<table>
 			<thead>
 				<tr>
+					<th>Assigned To</th>
 					<th>Task Name</th>
 					<th>Description</th>
 					<th>Severity</th>
@@ -75,6 +75,7 @@
 					<td>No Tasks are Set</td>
 				</tr>
 				<tr th:each="task : ${allTasks}">
+					<td><span th:text="${task.user.name}">Assignment</span></td>				
 					<td><span th:text="${task.name}"> Name </span></td>
 					<td><span th:text="${task.description}"> Description </span></td>
 					<td><span th:text="${task.severity}"> Severity </span></td>
