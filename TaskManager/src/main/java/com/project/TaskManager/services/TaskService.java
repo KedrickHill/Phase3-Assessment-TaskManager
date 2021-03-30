@@ -66,7 +66,7 @@ public class TaskService {
 	 * @return - List<Task>
 	 */
 	public List<Task> GetAllByTaskName(String name) {
-		return taskRepo.findAllByTaskName(name);
+		return taskRepo.findAllByName(name);
 	}
 	
 	/**

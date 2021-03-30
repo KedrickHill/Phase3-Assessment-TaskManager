@@ -11,7 +11,7 @@
 	</h1>
 
 	<h3>Current Tasks of the Day</h3>
-	<form action="/user-main" method="post">
+	<form action="user-main/update" method="post">
 		<table>
 			<thead>
 				<tr>

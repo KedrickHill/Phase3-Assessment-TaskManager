@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
 <meta charset="ISO-8859-1">
 <title>Register</title>
@@ -8,7 +10,7 @@
 <h2>Registration Form</h2>
 <hr/>
 <br/>
-<form action="/registered" method=post>
+<form action="registered" method=post>
 	Name:<abbr title="mandatory-field" aria-label="required">*</abbr> <br/>
 	<input type="text" id="name" name="name" placeholder="Enter Name" required/><br/><br/>
 	Email:<abbr title="mandatory-field1" aria-label="required">*</abbr> <br/>
