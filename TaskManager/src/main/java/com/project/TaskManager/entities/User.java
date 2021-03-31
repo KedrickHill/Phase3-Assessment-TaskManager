@@ -23,7 +23,7 @@ public class User {
 	@NotNull private String email;
 	@Column(name="password")
 	@NotNull private String password;
-	@Column(name="role")//TODO: Add roles to help define task management? Admin and User? Admin can set info for a user?
+	@Column(name="role")
 	@NotNull private String role;
 	
 	public User() {
